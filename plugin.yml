@@ -1,0 +1,7 @@
+name: CubeMatrix
+main: MINUTE.CubeMatrix.Main
+version: 1.0
+commands:
+  cube:
+        description: 'CubeMatrix Command (Made by MINUTE.)'
+   
