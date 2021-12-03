@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -41,88 +42,100 @@ public class MinecraftUtility {
 		blackCube.setItemMeta(blackCube_Data);
 	}
 	
-	public static float getPlayerArmorPoint(Player p) {
+	public static float getPlayerArmorPoint(LivingEntity p) {
 		int armorPoint = 0;
 		float finalarmor = 0;
 		List<ItemStack> Items = new ArrayList<ItemStack>();
 		
-		if (p.getInventory().getHelmet() != null)
-			Items.add(p.getInventory().getHelmet());
+		if (p.getEquipment().getHelmet() != null)
+			Items.add(p.getEquipment().getHelmet());
 		
-		if (p.getInventory().getLeggings() != null)
-			Items.add(p.getInventory().getLeggings());
+		if (p.getEquipment().getLeggings() != null)
+			Items.add(p.getEquipment().getLeggings());
 		
-		if (p.getInventory().getBoots() != null)
-			Items.add(p.getInventory().getBoots());
+		if (p.getEquipment().getBoots() != null)
+			Items.add(p.getEquipment().getBoots());
 		
-		if (p.getInventory().getChestplate() != null)
-			Items.add(p.getInventory().getChestplate());
+		if (p.getEquipment().getChestplate() != null)
+			Items.add(p.getEquipment().getChestplate());
 		
 		for (ItemStack Item_ : Items) {
 			if (Item_ != null) {
 				switch (Item_.getType()) {
-				case DIAMOND_BOOTS:
-					armorPoint += 3;
-					break;
-				case DIAMOND_CHESTPLATE:
-					armorPoint += 8;
-					break;
-				case DIAMOND_HELMET:
-					armorPoint += 3;
-					break;
-				case DIAMOND_LEGGINGS:
-					armorPoint += 6;
-					break;
-				case GOLD_BOOTS:
-					armorPoint += 1;
-					break;
-				case GOLD_CHESTPLATE:
-					armorPoint += 2;
-					break;
-				case GOLD_HELMET:
-					armorPoint += 2;
-					break;
-				case GOLD_LEGGINGS:
-					armorPoint += 3;
-					break;
-				case IRON_BOOTS:
-					armorPoint += 2;
-					break;
-				case IRON_CHESTPLATE:
-					armorPoint += 6;
-					break;
-				case IRON_HELMET:
-					armorPoint += 2;
-					break;
-				case IRON_LEGGINGS:
-					armorPoint += 5;
-					break;
-				case LEATHER_BOOTS:
-					armorPoint += 1;
-					break;
-				case LEATHER_CHESTPLATE:
-					armorPoint += 3;
-					break;
-				case LEATHER_HELMET:
-					armorPoint += 1;
-					break;
-				case LEATHER_LEGGINGS:
-					armorPoint += 2;
-					break;
-				case CHAINMAIL_BOOTS:
-					armorPoint += 1;
-					break;
-				case CHAINMAIL_CHESTPLATE:
-					armorPoint += 5;
-					break;
-				case CHAINMAIL_HELMET:
-					armorPoint += 2;
-					break;
-				case CHAINMAIL_LEGGINGS:
-					armorPoint += 4;
-					break;
-				default:
-					break;
+					case DIAMOND_BOOTS:
+						armorPoint += 3;
+						break;
+					case DIAMOND_CHESTPLATE:
+						armorPoint += 8;
+						break;
+					case DIAMOND_HELMET:
+						armorPoint += 3;
+						break;
+					case DIAMOND_LEGGINGS:
+						armorPoint += 6;
+						break;
+					case NETHERITE_BOOTS:
+						armorPoint += 3;
+						break;
+					case NETHERITE_CHESTPLATE:
+						armorPoint += 8;
+						break;
+					case NETHERITE_HELMET:
+						armorPoint += 3;
+						break;
+					case NETHERITE_LEGGINGS:
+						armorPoint += 6;
+						break;
+					case GOLDEN_BOOTS:
+						armorPoint += 1;
+						break;
+					case GOLDEN_CHESTPLATE:
+						armorPoint += 2;
+						break;
+					case GOLDEN_HELMET:
+						armorPoint += 2;
+						break;
+					case GOLDEN_LEGGINGS:
+						armorPoint += 3;
+						break;
+					case IRON_BOOTS:
+						armorPoint += 2;
+						break;
+					case IRON_CHESTPLATE:
+						armorPoint += 6;
+						break;
+					case IRON_HELMET:
+						armorPoint += 2;
+						break;
+					case IRON_LEGGINGS:
+						armorPoint += 5;
+						break;
+					case LEATHER_BOOTS:
+						armorPoint += 1;
+						break;
+					case LEATHER_CHESTPLATE:
+						armorPoint += 3;
+						break;
+					case LEATHER_HELMET:
+						armorPoint += 1;
+						break;
+					case LEATHER_LEGGINGS:
+						armorPoint += 2;
+						break;
+					case CHAINMAIL_BOOTS:
+						armorPoint += 1;
+						break;
+					case CHAINMAIL_CHESTPLATE:
+						armorPoint += 5;
+						break;
+					case CHAINMAIL_HELMET:
+						armorPoint += 2;
+						break;
+					case CHAINMAIL_LEGGINGS:
+						armorPoint += 4;
+						break;
+					default:
+						break;
 				}
 				
 				if (Item_.getEnchantmentLevel(Enchantment.PROTECTION_ENVIRONMENTAL) > 0) 
@@ -136,55 +149,64 @@ public class MinecraftUtility {
 		return finalarmor;
 	}
 
-	public static boolean isWearing(Player p) {
-		if (p.getInventory().getItemInOffHand().getType() != Material.AIR) {
-			switch (p.getInventory().getItemInOffHand().getType()) {
-			case DIAMOND_BOOTS:
-			case DIAMOND_CHESTPLATE:
-			case DIAMOND_HELMET:
-			case DIAMOND_LEGGINGS:
-			case GOLD_BOOTS:
-			case GOLD_CHESTPLATE:
-			case GOLD_HELMET:
-			case GOLD_LEGGINGS:
-			case IRON_BOOTS:
-			case IRON_CHESTPLATE:
-			case IRON_HELMET:
-			case IRON_LEGGINGS:
-			case LEATHER_BOOTS:
-			case LEATHER_CHESTPLATE:
-			case LEATHER_HELMET:
-			case LEATHER_LEGGINGS:
-			case CHAINMAIL_BOOTS:
-			case CHAINMAIL_CHESTPLATE:
-			case CHAINMAIL_HELMET:
-			case CHAINMAIL_LEGGINGS:
-			case SKULL:
-			case ELYTRA:
-				return true;
-			default:
-				return false;
+	public static boolean isWearing(LivingEntity p) {
+		if (p.getEquipment().getItemInOffHand().getType() != Material.AIR) {
+			switch (p.getEquipment().getItemInOffHand().getType()) {
+				case DIAMOND_BOOTS:
+				case DIAMOND_CHESTPLATE:
+				case DIAMOND_HELMET:
+				case DIAMOND_LEGGINGS:
+				case NETHERITE_BOOTS:
+				case NETHERITE_CHESTPLATE:
+				case NETHERITE_HELMET:
+				case NETHERITE_LEGGINGS:
+				case GOLDEN_BOOTS:
+				case GOLDEN_CHESTPLATE:
+				case GOLDEN_HELMET:
+				case GOLDEN_LEGGINGS:
+				case IRON_BOOTS:
+				case IRON_CHESTPLATE:
+				case IRON_HELMET:
+				case IRON_LEGGINGS:
+				case LEATHER_BOOTS:
+				case LEATHER_CHESTPLATE:
+				case LEATHER_HELMET:
+				case LEATHER_LEGGINGS:
+				case CHAINMAIL_BOOTS:
+				case CHAINMAIL_CHESTPLATE:
+				case CHAINMAIL_HELMET:
+				case CHAINMAIL_LEGGINGS:
+				case PLAYER_HEAD:
+				case ZOMBIE_HEAD:
+				case CREEPER_HEAD:
+				case DRAGON_HEAD:
+				case SKELETON_SKULL:
+				case WITHER_SKELETON_SKULL:
+				case ELYTRA:
+					return true;
+				default:
+					return false;
 			}
 		}
 		return false;
 	}
 
 	@SuppressWarnings("deprecation")
-	public static void healthBonus(Player p) {
-		if(p.getInventory().equals(p.getInventory())){
+	public static void healthBonus(LivingEntity p) {
+		if(p.getEquipment().equals(p.getEquipment())){
 			List<ItemStack> playerItems = new ArrayList<ItemStack>();
 			
-			if (p.getInventory().getHelmet() != null)
-				playerItems.add(p.getInventory().getHelmet());
+			if (p.getEquipment().getHelmet() != null)
+				playerItems.add(p.getEquipment().getHelmet());
 			
-			if (p.getInventory().getLeggings() != null)
-				playerItems.add(p.getInventory().getLeggings());
+			if (p.getEquipment().getLeggings() != null)
+				playerItems.add(p.getEquipment().getLeggings());
 			
-			if (p.getInventory().getBoots() != null)
-				playerItems.add(p.getInventory().getBoots());
+			if (p.getEquipment().getBoots() != null)
+				playerItems.add(p.getEquipment().getBoots());
 			
-			if (p.getInventory().getChestplate() != null)
-				playerItems.add(p.getInventory().getChestplate());
+			if (p.getEquipment().getChestplate() != null)
+				playerItems.add(p.getEquipment().getChestplate());
 			
 			float addHP = 0, addHPPercent = 1;
 			for (ItemStack playerItem : playerItems) {

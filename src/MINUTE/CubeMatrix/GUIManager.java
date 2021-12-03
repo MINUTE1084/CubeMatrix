@@ -12,24 +12,25 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
 public class GUIManager implements Listener{
-	ItemStack Accept = new Wool(DyeColor.LIME).toItemStack(1);
-	ItemStack Denied = new Wool(DyeColor.RED).toItemStack(1);
-	ItemStack End = new Wool(DyeColor.BLACK).toItemStack(1);
-	ItemStack Retey = new Wool(DyeColor.LIGHT_BLUE).toItemStack(1);
-	ItemStack Notice = new Wool(DyeColor.BLACK).toItemStack(1);
+	ItemStack Accept = new ItemStack(Material.LIME_WOOL, 1);
+	ItemStack Denied = new ItemStack(Material.RED_WOOL, 1);
+	ItemStack End = new ItemStack(Material.BLACK_WOOL, 1);
+	ItemStack Retey = new ItemStack(Material.LIGHT_BLUE_WOOL, 1);
+	ItemStack Notice = new ItemStack(Material.BLACK_WOOL, 1);
 	ItemLore Itemlore = new ItemLore();
 	ItemRank Itemrank = new ItemRank();
 	static boolean isReroll = false, selAfter = true;
 	static List<ItemStack> items = new ArrayList<ItemStack>(); {
-		ItemStack glass_1 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
-		ItemStack glass_2 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
-		ItemStack glass_3 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
-		ItemStack BEDROCKs = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+		ItemStack glass_1 = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
+		ItemStack glass_2 = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+		ItemStack glass_3 = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
+		ItemStack BEDROCKs = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
 		
 		ItemMeta AccMeta = Accept.getItemMeta();
 		AccMeta.setDisplayName(ChatColor.GREEN + "잠재옵션 부여");
@@ -47,20 +48,17 @@ public class GUIManager implements Listener{
 		
 		items.add(Denied);
 		items.add(Accept);
-		
-		glass_1.setDurability((short)14);
+
 		ItemMeta glass_1Meta = glass_1.getItemMeta();
 		glass_1Meta.setDisplayName(ChatColor.RED + "Red Cube");
 		glass_1.setItemMeta(glass_1Meta);
 		items.add(glass_1);
-		
-		glass_2.setDurability((short)15);
+
 		ItemMeta glass_2Meta = glass_2.getItemMeta();
 		glass_2Meta.setDisplayName(ChatColor.DARK_GRAY + "Black Cube");
 		glass_2.setItemMeta(glass_2Meta);
 		items.add(glass_2);
-		
-		glass_3.setDurability((short)7);
+
 		ItemMeta glass_3Meta = glass_3.getItemMeta();
 		glass_3Meta.setDisplayName(ChatColor.GRAY + "Unknown Cube");
 		glass_3.setItemMeta(glass_3Meta);
@@ -90,8 +88,7 @@ public class GUIManager implements Listener{
 		NotLore.add(ChatColor.GRAY + "창을 강제로 닫을 시, 큐브 사용 후의 아이템이 인벤토리에 지급됩니다.");
 		NotMeta.setLore(NotLore);
 		Notice.setItemMeta(NotMeta);
-		
-		BEDROCKs.setDurability((short)15);
+
 		ItemMeta BEDROCKsMETA = BEDROCKs.getItemMeta();
 		BEDROCKsMETA.setDisplayName(ChatColor.GRAY + "← Before / After →");
 		BEDROCKs.setItemMeta(BEDROCKsMETA);
@@ -105,7 +102,7 @@ public class GUIManager implements Listener{
     {
 		Player player = null;
 		ItemStack clicked = null;
-		Inventory inventory = null;
+		InventoryView inventory = null;
 		
 		if (event.getWhoClicked() instanceof Player)
 			player = (Player) event.getWhoClicked();
@@ -113,12 +110,12 @@ public class GUIManager implements Listener{
 		if (event.getCurrentItem() != null)
 			clicked = event.getCurrentItem();
 		
-		if (event.getInventory() != null)
-			inventory = event.getInventory();
+		if (event.getView() != null)
+			inventory = event.getView();
 		
 		if (player != null && clicked != null  && inventory != null ) {
-			if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " + ChatColor.RED + "레드 큐브")) {
-				if (clicked.getType() == Material.WOOL || clicked.getType() == Material.STAINED_GLASS_PANE) {
+			if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " + ChatColor.RED + "레드 큐브")) {
+				if (clicked.getType().toString().contains("WOOL") || clicked.getType().toString().contains("STAINED_GLASS_PANE")) {
 					event.setCancelled(true);
 					if (clicked.equals(items.get(0))) {
 						isReroll = false;
@@ -159,7 +156,7 @@ public class GUIManager implements Listener{
 					}
 				}
 			}
-			else if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.RED + "Result")) {
+			else if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.RED + "Result")) {
 					event.setCancelled(true);
 					isReroll = false;
 				if (clicked.equals(items.get(5))) {
@@ -178,8 +175,8 @@ public class GUIManager implements Listener{
 					}
 				}
 			}
-			else if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.GRAY + "수상한 큐브")) {
-				if (clicked.getType() == Material.WOOL || clicked.getType() == Material.STAINED_GLASS_PANE) {
+			else if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.GRAY + "수상한 큐브")) {
+				if (clicked.getType().toString().contains("WOOL") || clicked.getType().toString().contains("STAINED_GLASS_PANE")) {
 					event.setCancelled(true);
 					if (clicked.equals(items.get(0))) {
 						isReroll = false;
@@ -224,7 +221,7 @@ public class GUIManager implements Listener{
 					}
 				}
 			}
-			else if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.GRAY + "Result")) {
+			else if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.GRAY + "Result")) {
 					event.setCancelled(true);
 					isReroll = false;
 				if (clicked.equals(items.get(5))) {
@@ -243,8 +240,8 @@ public class GUIManager implements Listener{
 					}
 				}
 			}
-			else if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.DARK_GRAY + "블랙 큐브")) {
-				if (clicked.getType() == Material.WOOL || clicked.getType() == Material.STAINED_GLASS_PANE) {
+			else if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.DARK_GRAY + "블랙 큐브")) {
+				if (clicked.getType().toString().contains("WOOL") || clicked.getType().toString().contains("STAINED_GLASS_PANE")) {
 					event.setCancelled(true);
 					if (clicked.equals(items.get(0))) {
 						isReroll = false;
@@ -288,7 +285,7 @@ public class GUIManager implements Listener{
 					}
 				}
 			}
-			else if (inventory.getName().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.DARK_GRAY + "Result")) {
+			else if (inventory.getTitle().equals("\2476[\247eCubeMatrix\2476] " +  ChatColor.DARK_GRAY + "Result")) {
 					event.setCancelled(true);
 					isReroll = false;
 				if (clicked.equals(inventory.getItem(3))) {

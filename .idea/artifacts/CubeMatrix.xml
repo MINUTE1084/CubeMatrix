@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="CubeMatrix">
+    <output-path>$PROJECT_DIR$/../api/plugins</output-path>
+    <root id="archive" name="CubeMatrix.jar">
+      <element id="module-output" name="CubeMatrix" />
+      <element id="dir-copy" path="$PROJECT_DIR$/Resources" />
+    </root>
+  </artifact>
+</component>

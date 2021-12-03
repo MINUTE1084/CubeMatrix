@@ -7,8 +7,8 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		Bukkit.getConsoleSender().sendMessage("\2476[\247eCubeMatrix\2476] \2477v1.0 활성화 되었어요.");
-        System.out.println("Made by MINUTE.");
+		Bukkit.getConsoleSender().sendMessage("\2476[\247eCubeMatrix\2476] \2477v1.0.1 활성화 되었어요.");
+		Bukkit.getConsoleSender().sendMessage("Made by MINUTE.");
         
 		getCommand("cube").setExecutor(new CommandManager(this));
         getServer().getPluginManager().registerEvents(new EventManager(), this);
@@ -17,7 +17,7 @@ public class Main extends JavaPlugin {
 	
 	@Override
 	public void onDisable() {
-		Bukkit.getConsoleSender().sendMessage("\2476[\247eCubeMatrix\2476] \2477v1.0 비활성화 되었어요.");
-        System.out.println("Made by MINUTE.");
+		Bukkit.getConsoleSender().sendMessage("\2476[\247eCubeMatrix\2476] \2477v1.0.1 비활성화 되었어요.");
+		Bukkit.getConsoleSender().sendMessage("Made by MINUTE.");
 	}
 }
