@@ -74,28 +74,16 @@ public class MinecraftUtility {
 					case DIAMOND_LEGGINGS:
 						armorPoint += 6;
 						break;
-					case NETHERITE_BOOTS:
-						armorPoint += 3;
-						break;
-					case NETHERITE_CHESTPLATE:
-						armorPoint += 8;
-						break;
-					case NETHERITE_HELMET:
-						armorPoint += 3;
-						break;
-					case NETHERITE_LEGGINGS:
-						armorPoint += 6;
-						break;
-					case GOLDEN_BOOTS:
+					case GOLD_BOOTS:
 						armorPoint += 1;
 						break;
-					case GOLDEN_CHESTPLATE:
+					case GOLD_CHESTPLATE:
 						armorPoint += 2;
 						break;
-					case GOLDEN_HELMET:
+					case GOLD_HELMET:
 						armorPoint += 2;
 						break;
-					case GOLDEN_LEGGINGS:
+					case GOLD_LEGGINGS:
 						armorPoint += 3;
 						break;
 					case IRON_BOOTS:
@@ -156,14 +144,10 @@ public class MinecraftUtility {
 				case DIAMOND_CHESTPLATE:
 				case DIAMOND_HELMET:
 				case DIAMOND_LEGGINGS:
-				case NETHERITE_BOOTS:
-				case NETHERITE_CHESTPLATE:
-				case NETHERITE_HELMET:
-				case NETHERITE_LEGGINGS:
-				case GOLDEN_BOOTS:
-				case GOLDEN_CHESTPLATE:
-				case GOLDEN_HELMET:
-				case GOLDEN_LEGGINGS:
+				case GOLD_BOOTS:
+				case GOLD_CHESTPLATE:
+				case GOLD_HELMET:
+				case GOLD_LEGGINGS:
 				case IRON_BOOTS:
 				case IRON_CHESTPLATE:
 				case IRON_HELMET:
@@ -176,12 +160,7 @@ public class MinecraftUtility {
 				case CHAINMAIL_CHESTPLATE:
 				case CHAINMAIL_HELMET:
 				case CHAINMAIL_LEGGINGS:
-				case PLAYER_HEAD:
-				case ZOMBIE_HEAD:
-				case CREEPER_HEAD:
-				case DRAGON_HEAD:
-				case SKELETON_SKULL:
-				case WITHER_SKELETON_SKULL:
+				case SKULL:
 				case ELYTRA:
 					return true;
 				default:

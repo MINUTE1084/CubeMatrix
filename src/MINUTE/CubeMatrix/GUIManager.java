@@ -18,19 +18,19 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.material.Wool;
 
 public class GUIManager implements Listener{
-	ItemStack Accept = new ItemStack(Material.LIME_WOOL, 1);
-	ItemStack Denied = new ItemStack(Material.RED_WOOL, 1);
-	ItemStack End = new ItemStack(Material.BLACK_WOOL, 1);
-	ItemStack Retey = new ItemStack(Material.LIGHT_BLUE_WOOL, 1);
-	ItemStack Notice = new ItemStack(Material.BLACK_WOOL, 1);
+	ItemStack Accept = new Wool(DyeColor.LIME).toItemStack(1);
+	ItemStack Denied = new Wool(DyeColor.RED).toItemStack(1);
+	ItemStack End = new Wool(DyeColor.BLACK).toItemStack(1);
+	ItemStack Retey = new Wool(DyeColor.LIGHT_BLUE).toItemStack(1);
+	ItemStack Notice = new Wool(DyeColor.BLACK).toItemStack(1);
 	ItemLore Itemlore = new ItemLore();
 	ItemRank Itemrank = new ItemRank();
 	static boolean isReroll = false, selAfter = true;
 	static List<ItemStack> items = new ArrayList<ItemStack>(); {
-		ItemStack glass_1 = new ItemStack(Material.RED_STAINED_GLASS_PANE, 1);
-		ItemStack glass_2 = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
-		ItemStack glass_3 = new ItemStack(Material.GRAY_STAINED_GLASS_PANE, 1);
-		ItemStack BEDROCKs = new ItemStack(Material.BLACK_STAINED_GLASS_PANE, 1);
+		ItemStack glass_1 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+		ItemStack glass_2 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+		ItemStack glass_3 = new ItemStack(Material.STAINED_GLASS_PANE, 1);
+		ItemStack BEDROCKs = new ItemStack(Material.STAINED_GLASS_PANE, 1);
 		
 		ItemMeta AccMeta = Accept.getItemMeta();
 		AccMeta.setDisplayName(ChatColor.GREEN + "잠재옵션 부여");
@@ -49,16 +49,19 @@ public class GUIManager implements Listener{
 		items.add(Denied);
 		items.add(Accept);
 
+		glass_1.setDurability((short)14);
 		ItemMeta glass_1Meta = glass_1.getItemMeta();
 		glass_1Meta.setDisplayName(ChatColor.RED + "Red Cube");
 		glass_1.setItemMeta(glass_1Meta);
 		items.add(glass_1);
 
+		glass_2.setDurability((short)15);
 		ItemMeta glass_2Meta = glass_2.getItemMeta();
 		glass_2Meta.setDisplayName(ChatColor.DARK_GRAY + "Black Cube");
 		glass_2.setItemMeta(glass_2Meta);
 		items.add(glass_2);
 
+		glass_3.setDurability((short)7);
 		ItemMeta glass_3Meta = glass_3.getItemMeta();
 		glass_3Meta.setDisplayName(ChatColor.GRAY + "Unknown Cube");
 		glass_3.setItemMeta(glass_3Meta);
@@ -89,6 +92,7 @@ public class GUIManager implements Listener{
 		NotMeta.setLore(NotLore);
 		Notice.setItemMeta(NotMeta);
 
+		BEDROCKs.setDurability((short)15);
 		ItemMeta BEDROCKsMETA = BEDROCKs.getItemMeta();
 		BEDROCKsMETA.setDisplayName(ChatColor.GRAY + "← Before / After →");
 		BEDROCKs.setItemMeta(BEDROCKsMETA);
